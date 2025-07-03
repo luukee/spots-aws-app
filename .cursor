@@ -1,0 +1,55 @@
+[project]
+name = "spots-aws-app"
+description = "A Next.js web app that helps children and teens with cancer and their parents track how the child/teen is feeling throughout their cancer treatments and to communicate that information to their health care team."
+framework = "nextjs"
+database = "dynamodb"
+
+[tech_stack]
+frontend = ["nextjs", "react", "typescript", "tailwindcss"]
+backend = ["cognito", "dynamodb", "lambda"]
+styling = ["tailwindcss"]
+
+[formatting]
+use_tabs = false
+indent_width = 2
+line_width = 100
+quote_style = "single"
+trailing_commas = "always"
+semi_colons = true
+
+[typescript]
+strict_null_checks = true
+no_implicit_any = true
+
+[react]
+jsx_runtime = "automatic"
+jsx_import_source = "react"
+use_client_directive = true
+
+[naming]
+variable_case = "camelCase"
+type_case = "PascalCase"
+constant_case = "UPPER_CASE"
+
+[conventions]
+# File organization
+components_dir = "src/components"
+pages_dir = "src/app"
+utils_dir = "src/lib"
+types_dir = "src/types"
+
+# Naming conventions
+component_prefix = ""
+hook_prefix = "use"
+util_prefix = ""
+
+[ai_assist]
+explain_code = true
+suggest_test_cases = true
+style_preference = "concise"
+auto_apply_suggestions = false
+context_window = "large"
+prefer_native_apis = true
+suggest_improvements = true
+comment_code = true
+comment_style = "concise"
