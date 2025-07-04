@@ -19,12 +19,8 @@ const schema = a.schema({
       updatedAt: a.datetime(),
     })
     .authorization((allow) => [
-      // Users can read their own data
-      allow.owner(),
-      // Users can create their own profile
-      allow.owner().to(['create']),
-      // Users can update their own profile
-      allow.owner().to(['update']),
+      // Users can read, create, and update their own data
+      allow.owner().to(['read', 'create', 'update']),
       // For now, let's keep it simple - we'll add admin functionality later
     ])
     .identifier(['email']), // Use email as the unique identifier
