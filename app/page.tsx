@@ -12,9 +12,14 @@ Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
 
+type User = {
+  userId: string;
+  // add other properties if needed
+};
+
 export default function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -46,7 +51,7 @@ export default function App() {
     <Authenticator socialProviders={['google']}>
       {({ signOut, user }) => {
         // Set user state when authenticated
-        if (!user) setUser(user);
+        setUser(user ?? null);
 
         return (
           <main>
