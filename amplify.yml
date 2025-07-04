@@ -3,19 +3,23 @@ backend:
   phases:
     preBuild:
       commands:
+        - nvm install 20.19.3
+        - nvm use 20.19.3
         - rm -rf .npm  # Clear npm cache to ensure fresh dependencies
         - npm i -g @aws-amplify/cli
     build:
       commands:
         - rm -rf .npm  # Clear npm cache to ensure fresh dependencies
-        - npm install  # Changed from npm ci for better compatibility
+        - npm install --include=optional  # Include optional dependencies for Parcel watcher
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
     preBuild:
       commands:
+        - nvm install 20.19.3
+        - nvm use 20.19.3
         - rm -rf .next/cache  # Clear Next.js cache to ensure fresh build
-        - npm install  # Changed from npm ci for better compatibility
+        - npm install --include=optional  # Include optional dependencies for Parcel watcher
     build:
       commands:
         - npm run build
