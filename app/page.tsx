@@ -43,7 +43,7 @@ export default function App() {
   }
 
   return (
-    <Authenticator>
+    <Authenticator socialProviders={['google']}>
       {({ signOut, user }) => {
         // Set user state when authenticated
         if (!user) setUser(user);
