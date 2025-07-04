@@ -18,11 +18,17 @@ export const auth = defineAuth({
         },
       },
       callbackUrls: [
-        'http://localhost:3000/profile',
-        'https://main.daw61a36qd4st.amplifyapp.com/profile'
+        'http://localhost:3000/dashboard',
+        'https://main.daw61a36qd4st.amplifyapp.com/dashboard'
       ],
       logoutUrls: ['http://localhost:3000/', 'https://main.daw61a36qd4st.amplifyapp.com'],
     }
+  },
+  userAttributes: {
+    email: {
+      required: true,
+      mutable: true,
+    },
   },
   multifactor: {
     mode: 'OPTIONAL',

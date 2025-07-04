@@ -1,12 +1,37 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
-/*== STEP 1 ===============================================================
-The section below creates a Todo database table with a "content" field. Try
-adding a new "isDone" field as a boolean. The authorization rule below
-specifies that any user authenticated via an API key can "create", "read",
-"update", and "delete" any "Todo" records.
-=========================================================================*/
+/**
+ * Data schema for the SPOTS application.
+ * Defines the structure for users and other application data.
+ */
 const schema = a.schema({
+  /**
+   * User model to store additional user information beyond Cognito auth.
+   * Maps to the Firebase 'users' collection structure.
+   */
+  User: a
+    .model({
+      email: a.string().required(),
+      role: a.string().default('user'), // Default role for new users
+      givenName: a.string(), // Optional by default
+      familyName: a.string(), // Optional by default
+      createdAt: a.datetime(),
+      updatedAt: a.datetime(),
+    })
+    .authorization((allow) => [
+      // Users can read their own data
+      allow.owner(),
+      // Users can create their own profile
+      allow.owner().to(['create']),
+      // Users can update their own profile
+      allow.owner().to(['update']),
+      // For now, let's keep it simple - we'll add admin functionality later
+    ])
+    .identifier(['email']), // Use email as the unique identifier
+
+  /**
+   * Todo model (keeping the example for reference)
+   */
   Todo: a
     .model({
       content: a.string(),
