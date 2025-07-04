@@ -3,6 +3,8 @@ backend:
   phases:
     preBuild:
       commands:
+        - nvm install 20
+        - nvm use 20
         - npm i -g @aws-amplify/cli
     build:
       commands:
@@ -10,6 +12,10 @@ backend:
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
+    preBuild:
+      commands:
+        - npm install --package-lock-only
+        - npm ci
     build:
       commands:
         - npm run build
@@ -17,3 +23,8 @@ frontend:
     baseDirectory: .next
     files:
       - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*
+      - .npm/**/*
+      - node_modules/**/*
