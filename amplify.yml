@@ -13,6 +13,7 @@ backend:
         - nvm use 20.19.3
         - rm -rf .npm
         - npm install --include=optional --no-audit
+        - npm install @parcel/watcher-linux-x64-glibc --no-save
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
