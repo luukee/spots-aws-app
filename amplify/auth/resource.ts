@@ -21,7 +21,10 @@ export const auth = defineAuth({
         'http://localhost:3000/dashboard',
         'https://main.daw61a36qd4st.amplifyapp.com/dashboard'
       ],
-      logoutUrls: ['http://localhost:3000/', 'https://main.daw61a36qd4st.amplifyapp.com'],
+      logoutUrls: [
+        'http://localhost:3000/',
+        'https://main.daw61a36qd4st.amplifyapp.com/'
+      ],
     }
   },
   userAttributes: {
